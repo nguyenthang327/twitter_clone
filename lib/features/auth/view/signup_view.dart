@@ -2,7 +2,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:twitter_clone/common/common.dart';
-import 'package:twitter_clone/common/loading_page.dart';
 import 'package:twitter_clone/constants/constants.dart';
 import 'package:twitter_clone/features/auth/controller/auth_controller.dart';
 import 'package:twitter_clone/features/auth/view/login_view.dart';
@@ -20,7 +19,7 @@ class SignUpView extends ConsumerStatefulWidget {
 }
 
 class _SignUpViewState extends ConsumerState<SignUpView> {
-  final appbar = UiConstants.appBar();
+  final appbar = UIConstants.appBar();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -73,7 +72,7 @@ class _SignUpViewState extends ConsumerState<SignUpView> {
                           TextSpan(
                             text: " Login",
                             style: TextStyle(
-                              color: Pallete.blueColor,
+                              color: Palette.blueColor,
                               fontSize: 16,
                             ),
                             recognizer: TapGestureRecognizer()

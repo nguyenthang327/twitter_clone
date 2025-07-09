@@ -7,7 +7,7 @@ import 'package:twitter_clone/constants/constants.dart';
 import 'package:twitter_clone/features/auth/controller/auth_controller.dart';
 import 'package:twitter_clone/features/auth/view/signup_view.dart';
 import 'package:twitter_clone/features/auth/widgets/auth_field.dart';
-import 'package:twitter_clone/theme/pallete.dart';
+import 'package:twitter_clone/theme/palette.dart';
 
 class LoginView extends ConsumerStatefulWidget {
   static route() => MaterialPageRoute(
@@ -20,7 +20,7 @@ class LoginView extends ConsumerStatefulWidget {
 }
 
 class _LoginViewState extends ConsumerState<LoginView> {
-  final appbar = UiConstants.appBar();
+  final appbar = UIConstants.appBar();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -74,7 +74,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
                           TextSpan(
                             text: " Sign up",
                             style: TextStyle(
-                              color: Pallete.blueColor,
+                              color: Palette.blueColor,
                               fontSize: 16,
                             ),
                             recognizer: TapGestureRecognizer()

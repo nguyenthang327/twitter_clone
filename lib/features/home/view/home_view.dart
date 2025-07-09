@@ -1,18 +1,83 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:twitter_clone/constants/assets_constants.dart';
+import 'package:twitter_clone/constants/ui_constants.dart';
+import 'package:twitter_clone/features/tweet/views/create_tweet_view.dart';
+import 'package:twitter_clone/theme/theme.dart';
 
-class HomeView extends ConsumerWidget {
-   static route() => MaterialPageRoute(
+class HomeView extends StatefulWidget {
+  static route() => MaterialPageRoute(
         builder: (context) => const HomeView(),
       );
   const HomeView({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  int _page = 0;
+  final appBar = UIConstants.appBar();
+
+  void onPageChange(int index) {
+    setState(() {
+      _page = index;
+    });
+  }
+
+  onCreateTweet() {
+    Navigator.push(context, CreateTweetScreen.route());
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text('vv'),
-      )
+      appBar: appBar,
+      body: IndexedStack(
+        index: _page,
+        children: UIConstants.bottomTabBarPages,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: onCreateTweet,
+        child: const Icon(
+          Icons.add,
+          color: Palette.whiteColor,
+          size: 28,
+        ),
+      ),
+      bottomNavigationBar: CupertinoTabBar(
+        currentIndex: _page,
+        onTap: onPageChange,
+        backgroundColor: Palette.backgroundColor,
+        items: [
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              _page == 0
+                  ? AssetsConstants.homeFilledIcon
+                  : AssetsConstants.homeOutlinedIcon,
+              colorFilter:
+                  ColorFilter.mode(Palette.whiteColor, BlendMode.srcIn),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              AssetsConstants.searchIcon,
+              colorFilter:
+                  ColorFilter.mode(Palette.whiteColor, BlendMode.srcIn),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              _page == 2
+                  ? AssetsConstants.notifFilledIcon
+                  : AssetsConstants.notifOutlinedIcon,
+              colorFilter:
+                  ColorFilter.mode(Palette.whiteColor, BlendMode.srcIn),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
